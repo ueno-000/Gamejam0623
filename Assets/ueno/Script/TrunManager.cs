@@ -8,7 +8,7 @@ using UnityEngine;
 public class TrunManager : MonoBehaviour
 {
     /// <summary> シーン遷移 </summary>
-    [SerializeField] Scenemanager _scenemanager;
+  //  [SerializeField] Scenemanager _scenemanager;
 
     /// <summary> 現在のラウンド </summary>
     static public int  _nowRound = 0;
