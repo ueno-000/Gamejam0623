@@ -7,10 +7,19 @@ using UnityEngine;
 /// </summary>
 public class TrunManager : MonoBehaviour
 {
-    /// <summary>
-    /// 現在のラウンド
-    /// </summary>
-    int _round = 0;
+    /// <summary> シーン遷移 </summary>
+    [SerializeField] Scenemanager _scenemanager;
+
+    /// <summary> 現在のラウンド </summary>
+    static public int  _nowRound = 0;
+   
+    /// <summary>GameManager</summary>
+    [SerializeField] GameManager _gameManager;
+
+    /// <summary>全ての処理の終了フラグ</summary>
+    static public bool isAllTrunFin;
+
+    bool isRoundFin;
 
     enum RoundType
     {
@@ -19,35 +28,66 @@ public class TrunManager : MonoBehaviour
         sevenRound
     }
 
-    [Header("ターン数"),SerializeField] RoundType roundType;
+    [Header("ターン数"), SerializeField] RoundType roundType;
+
+    private void Awake()
+    {
+        isAllTrunFin = false;
+        _nowRound = 0;
+        isRoundFin = false;
+    }
 
     void Start()
     {
         switch (roundType)
-        { 
+        {
             case RoundType.threeRound:
-                TurnManagement(3);
+                StartCoroutine("TrunLoop",3);
                 break;
             case RoundType.fiveRound:
-                TurnManagement(5);
+                StartCoroutine("TrunLoop", 5);
                 break;
             case RoundType.sevenRound:
-                TurnManagement(7);
+                StartCoroutine("TrunLoop", 7);
                 break;
         }
     }
 
     void Update()
     {
-        
+        isRoundFin = ScoreManager.isFin;
     }
 
-    void TurnManagement(int num)
+    /// <summary>
+    /// ターンの処理
+    /// </summary>
+    /// <param name="num">ラウンド数指定</param>
+    /// <returns></returns>
+    private IEnumerator TrunLoop(int num)
     {
-        if (_round == num)
+        _nowRound++;
+        Debug.Log("現在のラウンド："+_nowRound);
+
+        yield return new WaitUntil(() => isRoundFin);
+
+        yield return new WaitForSeconds(2);
+
+        StartCoroutine(_gameManager.GetComponent<GameManager>().DesplayScore());
+
+
+        if (_nowRound == num)
         {
-            Debug.Log("リザルトに遷移");
+            isAllTrunFin = true;
+
         }
+        else
+        {
+            StartCoroutine("TrunLoop",num);
+        }
+
+        yield return new WaitForSeconds(2);
+        yield return null;
+
     }
 
 }
