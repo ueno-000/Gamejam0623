@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
 
     [Header("TitleButtonをアタッチ"), SerializeField] GameObject _titleButton;
 
+    [Header("Result表示時のSoundをアタッチ"),SerializeField] AudioSource _resultAudio;
+
     int _score;
     void Start()
     {
@@ -57,5 +59,6 @@ public class GameManager : MonoBehaviour
         _resultText.gameObject.SetActive(true);
         _resultText.text = "RESULT";
         _resultScoreText.text = _totalScore.ToString();
+        _resultAudio.Play();
     }
 }
