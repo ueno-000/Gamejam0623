@@ -6,38 +6,36 @@ public class BlockBase : MonoBehaviour
 {
     [SerializeField] bool _isBreakable = false;
     [SerializeField] float _breakVerocity = 10f;
-    //[SerializeField] ScoreManager scoreManager;
+    //ScoreManager scoreManager;
     bool _isActive = true;
-    Rigidbody2D _rb;
-    
+    protected Rigidbody2D _rb;
+
+    public virtual void BlockAbility() { }
+
     void OnEnable()
     {
         _rb = GetComponent<Rigidbody2D>();
-        //scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
+        //scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
     }
 
     void Update()
     {
-        if(_rb.velocity.y < -_breakVerocity)
+        if (_rb.velocity.y < -_breakVerocity)
         {
-            Debug.Log(Mathf.Abs(_rb.velocity.y));
-            _isActive = false;
             _isBreakable = true;
         }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(!_isActive)
-        {
-            BreakBrock();
-        }
+        BreakBrock();
     }
-    void BreakBrock()
+    public void BreakBrock()
     {
-        if (!_isBreakable)return;
+        if (!_isBreakable) return;
         else
         {
+            BlockAbility();
             //scoreManager.ScoreUp();
             Destroy(gameObject);
         }
