@@ -7,7 +7,6 @@ public class BlockBase : MonoBehaviour
     [SerializeField] bool _isBreakable = false;
     [SerializeField] float _breakVerocity = 10f;
     //ScoreManager scoreManager;
-    bool _isActive = true;
     protected Rigidbody2D _rb;
 
     public virtual void BlockAbility() { }
@@ -24,18 +23,23 @@ public class BlockBase : MonoBehaviour
         {
             _isBreakable = true;
         }
+
+        //if (ScoreManager._isfin)
+        //{
+        //    BreakBrock();
+        //}
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(_isBreakable)
-        {
-            BreakBrock();
-        }
+        BreakBrock();
     }
     public void BreakBrock()
     {
-        BlockAbility();
-        Destroy(gameObject);
+        if (_isBreakable)
+        {
+            BlockAbility();
+            Destroy(gameObject);
+        }
     }
 }
