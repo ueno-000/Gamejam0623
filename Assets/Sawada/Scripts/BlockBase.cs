@@ -4,21 +4,38 @@ using UnityEngine;
 
 public class BlockBase : MonoBehaviour
 {
-    [SerializeField] float _breakVerocity = 0.1f;
-    Rigidbody2D _rb;
+    [SerializeField] bool _isBreakable = false;
+    [SerializeField] float _breakVerocity = 10f;
+    //ScoreManager scoreManager;
+    bool _isActive = true;
+    protected Rigidbody2D _rb;
+
+    public virtual void BlockAbility() { }
+
     void OnEnable()
     {
         _rb = GetComponent<Rigidbody2D>();
+        //scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    void Update()
     {
-        if(_rb.velocity.y >= _breakVerocity)
+        if (_rb.velocity.y < -_breakVerocity)
         {
-            Debug.Log("Break");
+            _isBreakable = true;
         }
     }
-    void BreakBlock()
-    {
 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(_isBreakable)
+        {
+            BreakBrock();
+        }
+    }
+    public void BreakBrock()
+    {
+        BlockAbility();
+        Destroy(gameObject);
     }
 }
