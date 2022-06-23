@@ -28,16 +28,14 @@ public class BlockBase : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        BreakBrock();
+        if(_isBreakable)
+        {
+            BreakBrock();
+        }
     }
     public void BreakBrock()
     {
-        if (!_isBreakable) return;
-        else
-        {
-            BlockAbility();
-            //scoreManager.ScoreUp();
-            Destroy(gameObject);
-        }
+        BlockAbility();
+        Destroy(gameObject);
     }
 }
