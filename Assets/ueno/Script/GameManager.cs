@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     {
         _score = ScoreManager._collapseBlockScore;
         //スコア表示
-        _resultText.transform.gameObject.SetActive(true);
+        _resultText.gameObject.SetActive(true);
         _resultText.text = "ROUND"+TrunManager._nowRound;
         _resultScoreText.text = _score.ToString();
 

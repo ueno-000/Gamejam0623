@@ -5,8 +5,9 @@ using UnityEngine;
 public class BlockCreate : MonoBehaviour
 {
     //[SerializeField] GameObject[] block; //ブロック
-    [SerializeField] GameObject col; //ブロック
+    [SerializeField] GameObject[] col; //ブロック
     [SerializeField] GameObject oya; //親オブジェクト
+    [SerializeField] BlockDelevtion _bd;
 
     public bool _currentCreate;
     bool _createFlag;
@@ -39,25 +40,32 @@ public class BlockCreate : MonoBehaviour
 
         if(_createFlag)
         {
+            _bd.Set();
             StartCoroutine(CreateWall());
             _createFlag = false;
         }
 
     }
     
-    
+    public void CreateWallMethod()
+    {
+        _createFlag = true;
+    }
 
     public IEnumerator CreateWall()
     {
+        int i = 0;
         _currentCreate = true;
         Debug.Log("a");
         while(_currentCreate)
         {
+            i = i % 2;
             foreach(var list in list)
             {
                 list.transform.position = new Vector3(list.transform.position.x, list.transform.position.y + 1.24f);
             }
-            Instantiate(col, oya.transform);
+            Instantiate(col[i], oya.transform);
+            i++;
             yield return new WaitForSeconds(0.5f);
         }
     }

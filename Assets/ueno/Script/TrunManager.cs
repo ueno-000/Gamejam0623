@@ -25,6 +25,8 @@ public class TrunManager : MonoBehaviour
 
     bool isRoundFin;
 
+    [SerializeField] BlockCreate _bc;
+
     enum RoundType
     {
         threeRound,
@@ -59,7 +61,7 @@ public class TrunManager : MonoBehaviour
 
     void Update()
     {
-        isRoundFin = ScoreManager.isFin;
+   
     }
 
     /// <summary>
@@ -70,10 +72,23 @@ public class TrunManager : MonoBehaviour
     private IEnumerator TrunLoop(int num)
     {
         _nowRound++;
+        ScoreManager._shot = 0;
+        ScoreManager.isCollapsed = true;
+        ScoreManager.isFin = false;
+
         Debug.Log("現在のラウンド："+_nowRound);
 
-        yield return new WaitUntil(() => isRoundFin);
+        //プレイヤーを操作可能にする
+        yield return new WaitForSeconds(2);
+        PlayerController.ChangeControlPossible(true);    
+        while(!ScoreManager.isFin)
+        {
+            yield return null;
+        }
+        
 
+        //プレイヤーを操作不能にする
+        PlayerController.ChangeControlPossible(false);
         yield return new WaitForSeconds(2);
 
         StartCoroutine(_gameManager.GetComponent<GameManager>().DesplayScore());
@@ -86,7 +101,9 @@ public class TrunManager : MonoBehaviour
         }
         else
         {
+            ScoreManager._collapseBlockScore = 0;
             StartCoroutine("TrunLoop",num);
+            _bc.CreateWallMethod();
         }
 
         yield return new WaitForSeconds(2);
