@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3335655717007313868}
   - component: {fileID: 228261098084876686}
   - component: {fileID: 1791227487223703956}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: NormalBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,8 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isBreakable: 1
-  _breakPoint: 100
-  _breakVerocity: 10
+  _breakVerocity: 3
 --- !u!61 &228261098084876686
 BoxCollider2D:
   m_ObjectHideFlags: 0
