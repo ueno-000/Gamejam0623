@@ -5,14 +5,13 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
     /// <summary>壊したブロックの総数</summary>
-    static int _collapseBlockNum = 0;
+    static public int _collapseBlockScore = 0;
     /// <summary>加算処理で使う時間</summary>
     static float _time;
     /// <summary>加算処理が実行されているかのフラグ</summary>
     static bool isCollapsed = false;
-
-    /// <summary>score</summary>
-    [SerializeField]public int[] _score;
+    /// <summary>スコアの加算処理が終了したかのフラグ</summary>
+    static public bool isFin = false;
 
     /// <summary>score</summary>
     [SerializeField] public int _round = 0;
@@ -22,9 +21,10 @@ public class ScoreManager : MonoBehaviour
 
     void Start()
     {
-        _collapseBlockNum = 0;
+        _collapseBlockScore = 0;
         _time = 0;
         isCollapsed = false;
+        isFin = false;
     }
 
     // Update is called once per frame
@@ -36,27 +36,25 @@ public class ScoreManager : MonoBehaviour
 
             if (_time >= _intervalTime)
             {
-                Debug.Log("TotalScore:"+_collapseBlockNum);
+                GameManager._totalScore += _collapseBlockScore; 
+                Debug.Log("RoundScore:"+_collapseBlockScore);
                 isCollapsed = false;
+                isFin = true;
             }
-
         }
+
+        isFin = false;
     }
+
     /// <summary>
     /// スコア加算処理
     /// </summary>
-    /// <param name="num"></param>
-    static public void ScoreUp()
+    /*static*/ public void ScoreUp()
     {
-        _collapseBlockNum += 1;
+        _collapseBlockScore += 1;
         Debug.Log("ブロックが壊れた");
         isCollapsed = true;
         _time = 0;
-    }
-
-    public void Reset()
-    {
-        _collapseBlockNum = 0;
     }
 
 }
