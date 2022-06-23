@@ -8,12 +8,13 @@ public class PlayerController : MonoBehaviour
     [Tooltip("プレイヤーが撃つ場所を決めたかどうか")] bool _isPlayerDecide;
     [Tooltip("ゲージの最大値")] float _maxError = 1;
     [Tooltip("撃つポジション")] Vector3 _shotPos;
-    [Tooltip("プレイヤーが操作可能かどうか")] bool _isPlayerControlPossible;
+    [Tooltip("プレイヤーが操作可能かどうか")] bool _isPlayerControlPossible = true;
 
     [Tooltip("カーソル操作時のオブジェクト"), SerializeField] GameObject _go;
     [Tooltip("タイマーのスピード"), SerializeField] float _timerSpeed = 1;
     [Tooltip("ゲージ"), SerializeField] Slider _slider;
     [Tooltip("ブロックのレイヤー"), SerializeField] LayerMask _blockLayer;
+    [Tooltip(""), SerializeField] float _breakRadius;
 
     /// <summary>
     /// プレイヤーが操作可能かどうか
@@ -119,10 +120,11 @@ public class PlayerController : MonoBehaviour
     /// <param name="vec"></param>
     public void Shot(Vector2 vec)
     {
-        var gos = Physics2D.CircleCastAll(vec, 1, Vector2.zero, 0, _blockLayer);
+        var gos = Physics2D.CircleCastAll(vec, _breakRadius, Vector2.zero, 0, _blockLayer);
         foreach(var go in gos)
         {
             //ここに爆発処理を書く
+            go.collider.gameObject.GetComponent<BlockBase>().BreakBrock();
         }
     }
 }
