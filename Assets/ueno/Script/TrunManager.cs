@@ -3,20 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-///ƒ^[ƒ“§Œä 
+///ã‚¿ãƒ¼ãƒ³åˆ¶å¾¡ 
 /// </summary>
 public class TrunManager : MonoBehaviour
 {
-    /// <summary> ƒV[ƒ“‘JˆÚ </summary>
+    /// <summary> ã‚·ãƒ¼ãƒ³é·ç§» </summary>
+
   //  [SerializeField] Scenemanager _scenemanager;
 
-    /// <summary> Œ»İ‚Ìƒ‰ƒEƒ“ƒh </summary>
+
+
+
+    /// <summary> ç¾åœ¨ã®ãƒ©ã‚¦ãƒ³ãƒ‰ </summary>
     static public int  _nowRound = 0;
    
     /// <summary>GameManager</summary>
     [SerializeField] GameManager _gameManager;
 
-    /// <summary>‘S‚Ä‚Ìˆ—‚ÌI—¹ƒtƒ‰ƒO</summary>
+    /// <summary>å…¨ã¦ã®å‡¦ç†ã®çµ‚äº†ãƒ•ãƒ©ã‚°</summary>
     static public bool isAllTrunFin;
 
     bool isRoundFin;
@@ -28,7 +32,7 @@ public class TrunManager : MonoBehaviour
         sevenRound
     }
 
-    [Header("ƒ^[ƒ“”"), SerializeField] RoundType roundType;
+    [Header("ã‚¿ãƒ¼ãƒ³æ•°"), SerializeField] RoundType roundType;
 
     private void Awake()
     {
@@ -59,14 +63,14 @@ public class TrunManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒ^[ƒ“‚Ìˆ—
+    /// ã‚¿ãƒ¼ãƒ³ã®å‡¦ç†
     /// </summary>
-    /// <param name="num">ƒ‰ƒEƒ“ƒh”w’è</param>
+    /// <param name="num">ãƒ©ã‚¦ãƒ³ãƒ‰æ•°æŒ‡å®š</param>
     /// <returns></returns>
     private IEnumerator TrunLoop(int num)
     {
         _nowRound++;
-        Debug.Log("Œ»İ‚Ìƒ‰ƒEƒ“ƒhF"+_nowRound);
+        Debug.Log("ç¾åœ¨ã®ãƒ©ã‚¦ãƒ³ãƒ‰ï¼š"+_nowRound);
 
         yield return new WaitUntil(() => isRoundFin);
 
