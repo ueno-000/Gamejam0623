@@ -35,6 +35,7 @@ public class BlockBase : MonoBehaviour
     }
     public void BreakBrock()
     {
+        Debug.Log("hakai");
         BlockAbility();
         Destroy(gameObject);
     }
