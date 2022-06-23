@@ -6,7 +6,7 @@ public class BlockBase : MonoBehaviour
 {
     [SerializeField] bool _isBreakable = false;
     [SerializeField] float _breakVerocity = 10f;
-    //ScoreManager scoreManager;
+    ScoreManager scoreManager;
     bool _isActive = true;
     protected Rigidbody2D _rb;
 
@@ -15,7 +15,7 @@ public class BlockBase : MonoBehaviour
     void OnEnable()
     {
         _rb = GetComponent<Rigidbody2D>();
-        //scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
+        scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
     }
 
     void Update()
@@ -37,6 +37,7 @@ public class BlockBase : MonoBehaviour
     {
         Debug.Log("hakai");
         BlockAbility();
+        ScoreManager.ScoreUp();
         Destroy(gameObject);
     }
 }

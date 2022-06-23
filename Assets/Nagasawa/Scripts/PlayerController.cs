@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     [Tooltip("プレイヤーが撃つ場所を決めたかどうか")] bool _isPlayerDecide;
     [Tooltip("ゲージの最大値")] float _maxError = 1;
     [Tooltip("撃つポジション")] Vector3 _shotPos;
-    [Tooltip("プレイヤーが操作可能かどうか")] bool _isPlayerControlPossible = true;
+    [Tooltip("プレイヤーが操作可能かどうか")] static bool _isPlayerControlPossible = true;
 
     [Tooltip("カーソル操作時のオブジェクト"), SerializeField] GameObject _go;
     [Tooltip("タイマーのスピード"), SerializeField] float _timerSpeed = 1;
@@ -16,19 +16,24 @@ public class PlayerController : MonoBehaviour
     [Tooltip("ブロックのレイヤー"), SerializeField] LayerMask _blockLayer;
     [Tooltip(""), SerializeField] float _breakRadius;
     [SerializeField] ParticleSystem _bombEfect;
+    static bool _a;
 
     /// <summary>
     /// プレイヤーが操作可能かどうか
     /// </summary>
-    public bool IsPlayerControlPossible => _isPlayerControlPossible;
+    static public bool IsPlayerControlPossible => _isPlayerControlPossible;
 
     /// <summary>
     /// プレイヤーが操作可能かどうかを変えるメソッド
     /// </summary>
     /// <param name="on">　true = 可能, false = 不可能</param>
-    public void ChangeControlPossible(bool on)
+    static public void ChangeControlPossible(bool on)
     {
         _isPlayerControlPossible = on;
+        if(on)
+        {
+            SetUp();
+        }
     }
 
     void Start()
@@ -38,10 +43,20 @@ public class PlayerController : MonoBehaviour
         _slider.gameObject.SetActive(false);
     }
 
+    static void SetUp()
+    {
+        _a = true;
+    }
+
     void Update()
     {
         if (!_isPlayerControlPossible)
             return;
+        if(_a)
+        {
+            Start();
+            _a = false;
+        }
         PlayerCursor();
 
         PlayerShotReady();
@@ -130,5 +145,7 @@ public class PlayerController : MonoBehaviour
 
         _bombEfect.transform.position = vec;
         _bombEfect.Play();
+
+        ScoreManager._shot++;
     }
 }
