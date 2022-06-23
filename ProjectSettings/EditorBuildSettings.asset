@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/===MasterGameFolder===/Title.unity
+    guid: b08cc09d3f18ad64492f45765960d323
+  - enabled: 1
+    path: Assets/===MasterGameFolder===/PlayEx.unity
+    guid: 047b194210272984991425baf8db1ee2
+  - enabled: 1
+    path: Assets/===MasterGameFolder===/MasterGameScene.unity
+    guid: de5f6ed86439aa248bac32a38dda4e54
   m_configObjects: {}

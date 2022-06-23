@@ -19,7 +19,8 @@ public class BlockCreate : MonoBehaviour
     private void Start()
     {
         //var list = new List<List<GameObject>>(); //—ñ
-        _createFlag = true;
+        _createFlag =false;
+        StartCoroutine(CreateWall());
     }
 
     void Update()
