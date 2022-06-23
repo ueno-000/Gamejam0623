@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     [Tooltip("ゲージ"), SerializeField] Slider _slider;
     [Tooltip("ブロックのレイヤー"), SerializeField] LayerMask _blockLayer;
     [Tooltip(""), SerializeField] float _breakRadius;
+    [SerializeField] ParticleSystem _bombEfect;
 
     /// <summary>
     /// プレイヤーが操作可能かどうか
@@ -126,5 +127,8 @@ public class PlayerController : MonoBehaviour
             //ここに爆発処理を書く
             go.collider.gameObject.GetComponent<BlockBase>().BreakBrock();
         }
+
+        _bombEfect.transform.position = vec;
+        _bombEfect.Play();
     }
 }
