@@ -422,7 +422,6 @@ GameObject:
   - component: {fileID: 672582631}
   - component: {fileID: 672582630}
   - component: {fileID: 672582629}
-  - component: {fileID: 672582628}
   m_Layer: 5
   m_Name: ExitGameButtan
   m_TagString: Untagged
@@ -439,30 +438,18 @@ RectTransform:
   m_GameObject: {fileID: 672582626}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2104552, y: 1.2104552, z: 1.2104552}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1250647660}
   m_Father: {fileID: 755419053}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -278, y: 187}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 100, y: -50}
+  m_SizeDelta: {x: 170, y: 54.9}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &672582628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 672582626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fbf35558adf0ab4b91a13becd0d937c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &672582629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1238,6 +1225,7 @@ GameObject:
   - component: {fileID: 2030385059}
   - component: {fileID: 2030385058}
   - component: {fileID: 2030385057}
+  - component: {fileID: 2030385060}
   m_Layer: 5
   m_Name: StartButtan
   m_TagString: Untagged
@@ -1360,3 +1348,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2030385054}
   m_CullTransparentMesh: 1
+--- !u!95 &2030385060
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030385054}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4ec04ecaa4479bb4eb3efe6ef35c23cf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

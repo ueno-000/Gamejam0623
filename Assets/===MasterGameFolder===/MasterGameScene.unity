@@ -201,8 +201,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameManager: {fileID: 347041456}
-  _bc: {fileID: 1543681572}
-  roundType: 0
+  _bc: {fileID: 1543681575}
+  roundType: 2
 --- !u!114 &40040192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -417,7 +417,7 @@ MonoBehaviour:
   _resultText: {fileID: 2042348059}
   _resultScoreText: {fileID: 902658914}
   _titleButton: {fileID: 2015062099}
-  _resultAudio: {fileID: 0}
+  _resultAudio: {fileID: 1287966350}
 --- !u!1 &353598179
 GameObject:
   m_ObjectHideFlags: 0
@@ -1523,8 +1523,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 57d528f31b0df6c46a4cfed302c7bb49, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1750,7 +1750,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1543681573}
-  - component: {fileID: 1543681572}
+  - component: {fileID: 1543681575}
   - component: {fileID: 1543681574}
   m_Layer: 0
   m_Name: BlockCreateManager
@@ -1759,25 +1759,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1543681572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1543681571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 715ee2d6ce828a942834018d29b96e70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  col:
-  - {fileID: 4307950756938404271, guid: 1d3123d2c4f587e49bc44bf18ff0a33e, type: 3}
-  - {fileID: 4307950756938404271, guid: f6d9987231d338c48b5208f6be59b107, type: 3}
-  oya: {fileID: 207101530}
-  _bd: {fileID: 1543681574}
-  _currentCreate: 0
-  list: []
 --- !u!4 &1543681573
 Transform:
   m_ObjectHideFlags: 0
@@ -1805,7 +1786,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a92223cd64b04b469911cd1f1335cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bc: {fileID: 1543681572}
+  _bc: {fileID: 1543681575}
+--- !u!114 &1543681575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1543681571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ac02852f8a290b418ee8df8e72d618b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  col:
+  - {fileID: 4307950756938404271, guid: 1d3123d2c4f587e49bc44bf18ff0a33e, type: 3}
+  - {fileID: 4307950756938404271, guid: f6d9987231d338c48b5208f6be59b107, type: 3}
+  oya: {fileID: 207101530}
+  _bd: {fileID: 1543681574}
+  _currentCreate: 1
+  list: []
 --- !u!1 &1608502160
 GameObject:
   m_ObjectHideFlags: 0
