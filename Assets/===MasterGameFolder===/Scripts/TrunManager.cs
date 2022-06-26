@@ -41,6 +41,12 @@ public class TrunManager : MonoBehaviour
         isRoundFin = false;
     }
 
+    private void Start()
+    {
+        //プレイヤーを操作不能にする
+        PlayerController.ChangeControlPossible(false);
+    }
+
     /// <summary>
     /// buttonにアタッチするためのメソッド
     /// </summary>
@@ -67,8 +73,9 @@ public class TrunManager : MonoBehaviour
         Debug.Log("現在のラウンド："+_nowRound);
 
         //プレイヤーを操作可能にする
-        yield return new WaitUntil(()=>isRoundFin);
+        yield return new WaitForSeconds(2);
         PlayerController.ChangeControlPossible(true);    
+
         while(!ScoreManager.isFin)
         {
             yield return null;
