@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     [Tooltip("ブロックのレイヤー"), SerializeField] LayerMask _blockLayer;
     [Tooltip(""), SerializeField] float _breakRadius;
     [SerializeField] ParticleSystem _bombEfect;
+
+    [SerializeField] AudioSource _audio;
     static bool _a;
 
     /// <summary>
@@ -145,6 +147,8 @@ public class PlayerController : MonoBehaviour
 
         _bombEfect.transform.position = vec;
         _bombEfect.Play();
+
+        _audio.Play();
 
         ScoreManager._shot++;
     }
