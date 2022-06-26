@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,12 +8,6 @@ using UnityEngine;
 /// </summary>
 public class TrunManager : MonoBehaviour
 {
-    /// <summary> シーン遷移 </summary>
-
-  //  [SerializeField] Scenemanager _scenemanager;
-
-
-
 
     /// <summary> 現在のラウンド </summary>
     static public int  _nowRound = 0;
@@ -23,18 +18,21 @@ public class TrunManager : MonoBehaviour
     /// <summary>全ての処理の終了フラグ</summary>
     static public bool isAllTrunFin;
 
+    /// <summary>
+    /// ROUNDを選択したかの判定
+    /// </summary>
     bool isRoundFin;
 
     [SerializeField] BlockCreate _bc;
 
-    enum RoundType
-    {
-        threeRound,
-        fiveRound,
-        sevenRound
-    }
+    //public enum RoundType
+    //{
+    //    threeRound,
+    //    fiveRound,
+    //    sevenRound
+    //}
 
-    [Header("ターン数"), SerializeField] RoundType roundType;
+    //[Header("ターン数"), SerializeField] public RoundType roundType;
 
     private void Awake()
     {
@@ -43,33 +41,23 @@ public class TrunManager : MonoBehaviour
         isRoundFin = false;
     }
 
-    void Start()
+    /// <summary>
+    /// buttonにアタッチするためのメソッド
+    /// </summary>
+    /// <param name="num">ROUND数</param>
+    public void ChangeRound(int num)
     {
-        switch (roundType)
-        {
-            case RoundType.threeRound:
-                StartCoroutine("TrunLoop",3);
-                break;
-            case RoundType.fiveRound:
-                StartCoroutine("TrunLoop", 5);
-                break;
-            case RoundType.sevenRound:
-                StartCoroutine("TrunLoop", 7);
-                break;
-        }
+        StartCoroutine("TrunLoop", num);
+        isRoundFin = true;
     }
 
-    void Update()
-    {
-   
-    }
 
     /// <summary>
     /// ターンの処理
     /// </summary>
     /// <param name="num">ラウンド数指定</param>
     /// <returns></returns>
-    private IEnumerator TrunLoop(int num)
+    IEnumerator TrunLoop(int num)
     {
         _nowRound++;
         ScoreManager._shot = 0;
@@ -79,7 +67,7 @@ public class TrunManager : MonoBehaviour
         Debug.Log("現在のラウンド："+_nowRound);
 
         //プレイヤーを操作可能にする
-        yield return new WaitForSeconds(2);
+        yield return new WaitUntil(()=>isRoundFin);
         PlayerController.ChangeControlPossible(true);    
         while(!ScoreManager.isFin)
         {
@@ -110,5 +98,6 @@ public class TrunManager : MonoBehaviour
         yield return null;
 
     }
+
 
 }
